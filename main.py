@@ -2,9 +2,14 @@
 main.py — Render entry point.
 
 Launches both Telegram bots in background threads and exposes a minimal
-Flask HTTP server on the PORT Render injects.  Render's health-check hits
+Flask HTTP server on the PORT Render injects. Render's health-check hits
 the HTTP endpoint, keeping the free-tier Web Service alive.
 """
+
+# Load .env FIRST — before any bot module is imported so that
+# os.environ["BOT_TOKEN"] etc. are available at module level in bot.py / admin_bot.py
+from dotenv import load_dotenv
+load_dotenv()
 
 import os
 import time
@@ -69,7 +74,7 @@ def run_admin_bot():
 # ── Entry point ──────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
-    # Start both bots as daemon threads so they die with the main process
+    # Start both bots as daemon threads
     threading.Thread(target=run_bot, daemon=True, name="bot").start()
     threading.Thread(target=run_admin_bot, daemon=True, name="admin_bot").start()
 

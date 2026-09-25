@@ -15,3 +15,6 @@ services:
         sync: false
       - key: OWNER_USERNAME
         value: marco51375   # change if needed
+      - key: TARGET_CHAT_ID
+        sync: false          # e.g. -1001234567890 (the group/channel to moderate)
+
