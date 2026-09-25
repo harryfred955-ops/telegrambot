@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: pt-core-telegram-bots
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python main.py
+    envVars:
+      - key: BOT_TOKEN
+        sync: false          # set manually in the Render dashboard
+      - key: MASTER_BOT_TOKEN
+        sync: false
+      - key: TARGET_BOT_TOKEN
+        sync: false
+      - key: TARGET_API_TOKEN
+        sync: false
+      - key: OWNER_USERNAME
+        value: marco51375   # change if needed
